@@ -4,8 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "directories": {
-    "test":"test"
-      },
+    "test": "test"
+  },
   "scripts": {
     "start": "webpack-dev-server --watch",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
@@ -46,6 +46,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "react": "^15.0.2",
+    "react-addons-pure-render-mixin": "^15.0.2",
     "react-addons-test-utils": "^15.0.2",
     "react-dom": "^15.0.2"
   }
