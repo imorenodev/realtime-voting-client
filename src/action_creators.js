@@ -1,3 +1,5 @@
+// this hits whenever there's a change in state
+// emitted from the server
 export function setState(state) {
   return {
     type: 'SET_STATE',

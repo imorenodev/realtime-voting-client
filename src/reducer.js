@@ -5,22 +5,23 @@ function setState(state, newState) {
 }
 
 function vote(state, entry) {
+  const currentRound = state.getIn(['vote', 'round']);
   const currentPair = state.getIn(['vote', 'pair']);
   if (currentPair && currentPair.includes(entry)) {
-    return state.set('hasVoted', entry);
+    return state.set('myVote', Map({
+      round: currentRound,
+      entry
+    }));
   } 
   return state;
 }
 
 function resetVote(state) {
-  const hasVoted = state.get('hasVoted');
-  const currentPair = state.getIn(['vote', 'pair'], List());
-  // if state contains a hasVoted property BUT 
-  // the current pair doesn't include the movie title the client
-  // had voted on previously, then it's a new vote and 
-  // remove hasVoted property from state
-  if (hasVoted && !currentPair.includes(hasVoted)) {
-    return state.remove('hasVoted');
+  const votedForRound = state.getIn(['myVote', 'round']);
+  const currentRound = state.getIn(['vote', 'round']);
+  
+  if (votedForRound !== currentRound) {
+    return state.remove('myVote');
   }
   return state;
 }
